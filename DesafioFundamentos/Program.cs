@@ -5,13 +5,35 @@ Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 decimal precoInicial = 0;
 decimal precoPorHora = 0;
+bool testeValor = false;
 
-Console.WriteLine("Seja bem vindo ao sistema de estacionamento!\n" +
-                  "Digite o preço inicial:");
-precoInicial = Convert.ToDecimal(Console.ReadLine());
+Console.WriteLine("Seja bem vindo ao sistema de estacionamento!\n");
+//Este laço de repetição testa se o usuario digitou realmente um numero.
+                do{
+                    Console.WriteLine("Digite o Valor inicial:");
+                     String resposta = Console.ReadLine();
+                    if(decimal.TryParse(resposta,out precoInicial)){
+                        testeValor = true;
+                    }else{
+                        Console.Clear();
+                        Console.WriteLine("Digite o valor inicial corretamente. somente numeros são aceitos.\n Pressione qualquer tecla para tentar novamente!");
+                        Console.ReadLine();
+                    }
+                }while(testeValor == false);
 
-Console.WriteLine("Agora digite o preço por hora:");
-precoPorHora = Convert.ToDecimal(Console.ReadLine());
+        testeValor = false;
+//Este laço ele refaz o teste para validar as horas.
+                do{
+                    Console.WriteLine("Agora digite o preço por hora:");
+                     String resposta = Console.ReadLine();
+                    if(decimal.TryParse(resposta,out precoPorHora)){
+                        testeValor = true;
+                    }else{
+                        Console.Clear();
+                        Console.WriteLine("Voce não digitou corretamente. Somente numeros são aceitos.\n Pressione qualquer tecla para tentar novamente!");
+                        Console.ReadLine();
+                    }
+                }while(testeValor == false);
 
 // Instancia a classe Estacionamento, já com os valores obtidos anteriormente
 Estacionamento es = new Estacionamento(precoInicial, precoPorHora);
